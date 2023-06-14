@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/Rob--W/cors-anywhere.svg?branch=master)](https://travis-ci.org/Rob--W/cors-anywhere)
-[![Coverage Status](https://coveralls.io/repos/github/Rob--W/cors-anywhere/badge.svg?branch=master)](https://coveralls.io/github/Rob--W/cors-anywhere?branch=master)
+# Debug help:
+docker run -itp 1234:8080 -e AUTHORIZATION_HEADER=test $(docker build -q .)
+curl http://localhost:1234/https://google.com -H 'Origin: localhost' -H 'Authorization: test'
 
 **CORS Anywhere** is a NodeJS proxy which adds CORS headers to the proxied request.
 
@@ -103,6 +104,8 @@ proxy requests. The following options are supported:
 * array of strings `requireHeader` - If set, the request must include this header or the API will refuse to proxy.  
   Recommended if you want to prevent users from using the proxy for normal browsing.  
   Example: `['Origin', 'X-Requested-With']`.
+* string `authorizationHeader` - If set, the request must include that value as `(A|a)uthorization` header;
+  otherwise the API will refuse to proxy.
 * array of lowercase strings `removeHeaders` - Exclude certain headers from being included in the request.  
   Example: `["cookie"]`
 * dictionary of lowercase strings `setHeaders` - Set headers for the request (overwrites existing ones).  
